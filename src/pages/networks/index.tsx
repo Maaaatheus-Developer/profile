@@ -34,6 +34,7 @@ export function Networks() {
     })
       .then(() => {
         console.log("Cadastrado com sucesso");
+        alert('Link cadastrado com sucesso')
       })
       .catch((error) => {
         console.log("Erro ao salvar" + error);
@@ -49,7 +50,7 @@ export function Networks() {
 
       <form className="flex flex-col max-w-xl w-full" onSubmit={handleRegister}>
         <label className="text-white font-medium mt-2 mb-3">
-          Link do Facebook
+          Link do WhatsApp
         </label>
         <Input
           placeholder="Digite a url do Facebook..."
