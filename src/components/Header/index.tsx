@@ -1,10 +1,10 @@
 import { BiLogOut } from "react-icons/bi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../../services/firebaseConnetion";
 
 export function Header() {
-  const navegar = useNavigate();
+  // const navegar = useNavigate();
 
   async function handleLogout() {
     signOut(auth);
