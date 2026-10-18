@@ -1,6 +1,6 @@
 import { Social } from "../../components/Social/index";
 import { useState, useEffect } from "react";
-import { FaInstagram, FaGithub, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaWhatsapp } from "react-icons/fa";
 import { db } from "../../services/firebaseConnetion";
 import {
   getDocs,
@@ -58,6 +58,8 @@ export function Home() {
   useEffect(() => {
     function loadSocialLinks() {
       const docRef = doc(db, "social", "link");
+      console.log(docRef);
+
       getDoc(docRef).then((snapshot) => {
         if (snapshot.data() !== undefined) {
           setSocialLinks({
@@ -83,7 +85,10 @@ export function Home() {
       <main className="flex flex-col w-11/12 max-w-xl text-center">
         {links.map((link) => (
           <section
-            style={{ backgroundColor: link.bg }}
+            style={{
+              backgroundColor: link.bg,
+              fontWeight: "bold",
+            }}
             key={link.id}
             className="bg-white mb-4 w-full py-2 rounded-lg select-none transition-transform hover:scale-105 cursor-pointer"
           >
@@ -100,15 +105,6 @@ export function Home() {
             <Social url={socialLinks?.facebook}>
               <FaWhatsapp
                 className="select-none transition-transform hover:scale-105 cursor-pointer animate-bounce"
-                size={35}
-                color="#FFF"
-              />
-            </Social>
-
-            <Social url={socialLinks?.instagram}>
-              <FaInstagram
-                className="select-none transition-transform hover:scale-105 cursor-pointer animate-bounce
-"
                 size={35}
                 color="#FFF"
               />
