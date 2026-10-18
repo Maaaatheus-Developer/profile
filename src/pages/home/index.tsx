@@ -1,6 +1,6 @@
 import { Social } from "../../components/Social/index";
 import { useState, useEffect } from "react";
-import { FaInstagram, FaGithub, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { db } from "../../services/firebaseConnetion";
 import {
   getDocs,
@@ -23,6 +23,7 @@ interface SocialLinksProps {
   facebook: string;
   instagram: string;
   github: string;
+  linkedin: string;
 }
 
 export function Home() {
@@ -58,12 +59,15 @@ export function Home() {
   useEffect(() => {
     function loadSocialLinks() {
       const docRef = doc(db, "social", "link");
+      console.log(docRef);
+
       getDoc(docRef).then((snapshot) => {
         if (snapshot.data() !== undefined) {
           setSocialLinks({
             facebook: snapshot.data()?.facebook,
             instagram: snapshot.data()?.instagram,
             github: snapshot.data()?.github,
+            linkedin: snapshot.data()?.linkedin,
           });
         }
       });
@@ -83,7 +87,10 @@ export function Home() {
       <main className="flex flex-col w-11/12 max-w-xl text-center">
         {links.map((link) => (
           <section
-            style={{ backgroundColor: link.bg }}
+            style={{
+              backgroundColor: link.bg,
+              fontWeight: "bold",
+            }}
             key={link.id}
             className="bg-white mb-4 w-full py-2 rounded-lg select-none transition-transform hover:scale-105 cursor-pointer"
           >
@@ -105,20 +112,16 @@ export function Home() {
               />
             </Social>
 
-            <Social url={socialLinks?.instagram}>
-              <FaInstagram
-                className="select-none transition-transform hover:scale-105 cursor-pointer animate-bounce
-"
+            <Social url={socialLinks?.github}>
+              <FaGithub
+                className="select-none transition-transform hover:scale-105 cursor-pointer animate-bounce"
                 size={35}
                 color="#FFF"
               />
             </Social>
-
-            <Social url={socialLinks?.github}>
-              <FaGithub
-                className="select-none transition-transform hover:scale-105 cursor-pointer animate-bounce
-
-"
+            <Social url={socialLinks?.linkedin}>
+              <FaLinkedin
+                className="select-none transition-transform hover:scale-105 cursor-pointer animate-bounce"
                 size={35}
                 color="#FFF"
               />

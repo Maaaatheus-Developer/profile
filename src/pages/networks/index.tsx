@@ -8,6 +8,7 @@ export function Networks() {
   const [facebook, setFacebook] = useState("");
   const [instagram, setInstragram] = useState("");
   const [github, setGithub] = useState("");
+  const [linkedin, setLinkedin] = useState("");
 
   useEffect(() => {
     function loadLinks() {
@@ -17,6 +18,7 @@ export function Networks() {
           setFacebook(snapshot.data()?.facebook);
           setInstragram(snapshot.data()?.instagram);
           setGithub(snapshot.data()?.github);
+          setLinkedin(snapshot.data()?.linkedin);
         }
       });
     }
@@ -31,10 +33,11 @@ export function Networks() {
       facebook: facebook,
       instagram: instagram,
       github: github,
+      linkedin: linkedin,
     })
       .then(() => {
         console.log("Cadastrado com sucesso");
-        alert('Link cadastrado com sucesso')
+        alert("Link cadastrado com sucesso");
       })
       .catch((error) => {
         console.log("Erro ao salvar" + error);
@@ -77,6 +80,15 @@ export function Networks() {
           type="url"
           value={github}
           onChange={(e) => setGithub(e.target.value)}
+        />
+        <label className="text-white font-medium mt-2 mb-3">
+          Link do Linkedin
+        </label>
+        <Input
+          placeholder="Digite a url do Linkdin..."
+          type="url"
+          value={linkedin}
+          onChange={(e) => setLinkedin(e.target.value)}
         />
 
         <button
