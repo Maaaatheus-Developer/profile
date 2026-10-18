@@ -1,6 +1,6 @@
 import { Social } from "../../components/Social/index";
 import { useState, useEffect } from "react";
-import { FaGithub, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { db } from "../../services/firebaseConnetion";
 import {
   getDocs,
@@ -23,6 +23,7 @@ interface SocialLinksProps {
   facebook: string;
   instagram: string;
   github: string;
+  linkedin: string;
 }
 
 export function Home() {
@@ -66,6 +67,7 @@ export function Home() {
             facebook: snapshot.data()?.facebook,
             instagram: snapshot.data()?.instagram,
             github: snapshot.data()?.github,
+            linkedin: snapshot.data()?.linkedin,
           });
         }
       });
@@ -112,9 +114,14 @@ export function Home() {
 
             <Social url={socialLinks?.github}>
               <FaGithub
-                className="select-none transition-transform hover:scale-105 cursor-pointer animate-bounce
-
-"
+                className="select-none transition-transform hover:scale-105 cursor-pointer animate-bounce"
+                size={35}
+                color="#FFF"
+              />
+            </Social>
+            <Social url={socialLinks?.linkedin}>
+              <FaLinkedin
+                className="select-none transition-transform hover:scale-105 cursor-pointer animate-bounce"
                 size={35}
                 color="#FFF"
               />
